@@ -1,0 +1,81 @@
+/*------------------------------------------------------------------
+[resizable_Table.css]
+Authors:		Roy Van Liew
+Last Modified:	July 22, 2015
+Description:	Styling for the result table cells to make it
+                responsive to the window size.
+-------------------------------------------------------------------*/
+
+/* The Following Media Queries base the table images
+   and text size off the window size. */
+@media only screen and (min-width: 200px) {
+    .resizeTable {
+
+        font-size: 5px;   
+    }
+}
+
+@media only screen and (min-width: 390px) {
+    .resizeTable {
+
+        font-size: 6px;   
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .resizeTable {
+
+        font-size: 7px;   
+    }
+}
+
+@media only screen and (min-width: 500px) {
+    .resizeTable {
+
+        font-size: 8px;   
+    }
+}
+
+@media only screen and (min-width: 550px) {
+    .resizeTable {
+
+        font-size: 9px;   
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .resizeTable {
+
+        font-size: 10px;   
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .resizeTable {
+
+        font-size: 11px;
+    }
+}
+
+@media only screen and (min-width: 750px) {
+    .resizeTable {
+
+        font-size: 12px;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    .resizeTable {
+
+        font-size: 14px;
+    }
+}
+
+
+
+/* The following allows the table to resize based on the browser window. */
+.table {
+        max-width: none;
+        table-layout: fixed;
+        word-wrap: break-word;
+}

@@ -1,0 +1,24 @@
+/*------------------------------------------------------------------
+[pages.css]
+Authors:		Roy Van Liew
+Last Modified:	July 22, 2015
+Description:	Styling for the dynatables in the search results
+                and the pagination elements.
+-------------------------------------------------------------------*/
+
+/* There shouldn't be any space in between the bootstrap page blocks */
+.pagination {
+    margin: 0px !important;
+}
+
+/* For our own datatable styling. */
+th {
+    background-color:#0079C2;
+}
+
+/* Active page button should have a blue color around it */
+.dynatable-active-page {
+    background: #0079C2;
+    border-radius: 5px;
+    color: #fff;
+}

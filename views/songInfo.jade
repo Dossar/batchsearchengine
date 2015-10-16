@@ -1,0 +1,40 @@
+extends ./layout.jade
+
+block scripts
+    
+block content
+    title #{songtitle}
+    div(class="container")
+    
+        <!-- Row for the table that displays song information. -->
+        div(class="row")
+            
+            <!-- Go by field and value for columns. -->
+            div(class="col-xs-12")
+                div(class="table-responsive")
+                    table(class="table")
+                        tbody
+                        
+                            <!-- This spacing will apply for all rows in the table -->
+                            tr
+                                td(class="col-xs-6 col-sm-4") Song
+                                td(class="col-xs-6 col-sm-8") #{songTitle}
+                            tr
+                                td Artist
+                                td #{artist}
+                            tr
+                                td Stepartist
+                                td #{stepper}
+                            tr
+                                td Status
+                                td #{status}
+                            tr
+                                td Update
+                                td #{latest}
+                            tr
+                                td Batch
+                                td
+                                    a(href="/batch?batchName=" + batchName) #{batchName}
+                            tr
+                                td Permission
+                                td #{permission}

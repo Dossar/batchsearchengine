@@ -1,0 +1,24 @@
+/*------------------------------------------------------------------
+[nav.css]
+Authors:		Roy Van Liew
+Last Modified:	June 22 2015
+Description:	Styling for the navigation bar in the header of the
+				website pages.
+-------------------------------------------------------------------*/
+
+/* nav wrapper for the logo at the top of the screen. */
+div#logo {
+	overflow:hidden;
+	width:100px;
+	background-color:#FFF;
+	border-top:1px solid #FFF;
+    margin:0 auto;
+}
+
+/* Prevent images from being wider than their container. */
+img#logo {
+    width:100%;
+    height: auto;
+    padding-top:10px;
+    padding-bottom:10px;
+}

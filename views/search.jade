@@ -1,0 +1,151 @@
+extends ./layout.jade
+
+block scripts
+    <!-- CSS includes -->
+    <!-- Dynatable styling -->
+    link(rel='stylesheet' href='/css/jquery.dynatable.css')
+    
+    <!-- CSS for some things in dynatable. -->
+    link(rel="stylesheet" href="/css/pages.css")
+    
+    <!-- Javascript includes -->
+    <!-- API that allows for JSON objects for creating paginated tables. -->
+    script(src="/js/jquery.dynatable.js")
+    
+    <!-- Character counter for song title and step artist search. -->
+    script(src='/js/character_count.js')
+    
+    <!-- Accordion collapse behavior script. Transitions between Song Title Search and Step Artist Search. -->
+    script(src="/js/accordion_focus.js")
+    
+    <!-- AutoComplete Table for Song Title Search -->
+    script(src="/js/autocomplete_songname.js")
+    
+    <!-- AutoComplete Table for Step Artist Search -->
+    script(src="/js/autocomplete_stepartist.js")
+    
+    <!-- Validation of input text fields for Song Title and Step Artist -->
+    script(src="/js/search_validate.js")
+    
+    <!-- Resizable Table relative to Browser Window -->
+    link(rel="stylesheet" href="/css/resizable_Table.css")
+    
+    script.
+        $(document).ready( function () { initCharCounterSongTitle(); initCharCounterStepArtist(); initAccordionFocusSettings(); autocompleteSongTitle(); autocompleteStepArtist(); });
+
+block content
+    title Song Search
+    div(class="container")
+    
+        <!-- Main Accordion Div Container -->
+        div(class="panel-group" id="accordion" role="tablist" aria-multiselectable="true")
+        
+            <!-- Song Title Accordion Tab -->
+            div(class="panel panel-default")
+            
+                <!-- Clickable Heading for Expanding or Collapsing the Song Title Search Tab -->
+                div(class="panel-heading" role="tab" id="headingOne")
+                    h4(class="panel-title")
+                        a(id="collapseOneAnchor" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="clickedOnSongTitleSearch()" style="width:100%;display:inline-block;") Song Title Search
+                        
+                <!-- The div with actual content inside of the General Search section of the accordion -->
+                div(id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne")
+                    div(class="panel-body")
+                    
+                        <!-- Row for error message that displays if use doesn't fill out input text field -->
+                        div(class="row")
+                            div(class="col-xs-12")
+                                div(id="songTitleSearchFieldEmpty")
+                    
+                        <!-- Song Title Search -->
+                        form(action = '/' method='get' name="formSongTitle" onsubmit="return checkSongTitleSearchField()")
+                        
+                            <!-- Row for character counter -->
+                            div(class="row")
+                                div(class="col-sm-2")
+                                div(class="col-xs-12 col-sm-6")
+                                    center
+                                        span(id="songTitleCharacters")
+                                    br
+                                    
+                            <!-- Row for input text field and Search button for Song Title Search -->
+                            div(class="row")
+                                div(class="col-sm-2")
+                                div(class="col-xs-6 col-sm-6")
+                                    input(type="text" name="inputSongTitle" value="#{inputSongTitle}" maxlength="50" id="inputSongTitle" class="form-control autocompleteSongTitle" placeholder="e.g. Amber Shores" style="position:absolute;width:100%")
+                                div(class="col-xs-6 col-sm-2")
+                                    button(type="submit" class="btn btn-primary btn-block") Search
+                               
+                               
+            <!-- Step Artist Accordion Tab -->
+            div(class="panel panel-default")
+            
+                <!-- Clickable Heading for Expanding or Collapsing the Step Artist Search Tab -->
+                div(class="panel-heading" role="tab" id="headingTwo")
+                    h4(class="panel-title")
+                        a(id="collapseTwoAnchor" class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="clickedOnStepArtistSearch()" style="width:100%;display:inline-block;") Step Artist Search
+                        
+                <!-- The div with actual content inside of the Step Artist Search section of the accordion -->
+                div(id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo")
+                    div(class="panel-body")
+                    
+                        <!-- Row for error message that displays if use doesn't fill out any input fields -->
+                        div(class="row")
+                            div(class="col-xs-12")
+                                div(id="stepArtistSearchFieldEmpty")
+                    
+                        <!-- Step Artist Search -->
+                        form(action = '/' method='get' name='formArtist' onsubmit="return checkStepArtistSearchField()")
+                        
+                            <!-- Row for character counter -->
+                            div(class="row")
+                                div(class="col-sm-2")
+                                div(class="col-xs-12 col-sm-6")
+                                    center
+                                        span(id="stepArtistCharacters")
+                                    br
+                        
+                            <!-- Row for input text field and Search button for Step Artist Search -->
+                            div(class="row")
+                                div(class="col-sm-2")
+                                div(class="col-xs-6 col-sm-6")
+                                    input(type="text" name="inputStepArtist" value="#{inputStepArtist}" maxlength="50" id="inputStepArtist" class="form-control autocompleteStepArtist" placeholder="e.g. Silvuh" style="position:absolute;width:100%")
+                                div(class="col-xs-6 col-sm-2")
+                                    button(type="submit" class="btn btn-primary btn-block") Search
+                                    
+        <!-- Dynamically makes a song results table if there are results present -->
+        if(results)
+            if(results == -1)
+                center
+                    h2 No Songs Matched.
+            else
+                center
+                    h2 #{results.length} Songs Matched.
+                br
+                table(id="resultsTable" class="table table-bordered resizeTable" cellspacing="0" width="100%")
+                    thead
+                        tr
+                            th(style="width: 16.6%; font-weight: 700;") Song
+                            th(style="width: 16.6%; font-weight: 700;") Artist
+                            th(style="width: 16.6%; font-weight: 700;") Stepartist
+                            th(style="width: 16.6%; font-weight: 700;") Status
+                            th(style="width: 16.6%; font-weight: 700;") Update
+                            th(style="width: 16.6%; font-weight: 700;") Batch
+
+                    tbody
+                    each val in results
+                        tr
+                            td
+                                a(href="/songInfo?idNum=" + val.idNum) #{val.title}
+                            td #{val.artist}
+                            td #{val.stepper}
+                            td #{val.status}
+                            td #{val.latest}
+                            td #{val.batch}
+
+
+                <!-- We initialize the dynatable when the table has been created from the JSON object. -->
+                script.
+                    $('#resultsTable').dynatable();
+                    $('span.dynatable-search').remove();
+

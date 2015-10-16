@@ -1,0 +1,16 @@
+extends ./layout.jade
+
+block scripts
+    <!-- Redirect the user to the Search Page in 5 seconds. -->
+    meta(http-equiv="refresh" content="5;URL=/")
+
+block content
+    title Invalid Page
+    div(class="container")
+    
+        div(class="row")
+            div(class="col-sm-12")
+                center
+                    h1 ERROR
+                    h5 The page you requested does not exist. You will be automatically redirected in 5 seconds to the
+                        a(href="/") &nbspSearch Page.

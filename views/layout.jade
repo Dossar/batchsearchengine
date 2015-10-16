@@ -1,0 +1,46 @@
+doctype html
+html(lang="en")
+
+    head
+        //title="Song Search"
+        
+        <!-- Default scripts to include -->
+        link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css')
+        link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css")
+        link(rel="stylesheet" href="/css/nav.css")
+        link(rel="stylesheet" href="/css/autocomplete.css")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js")
+        script(src="//code.jquery.com/ui/1.11.4/jquery-ui.js")
+        script(src='/js/bootstrap.min.js')
+        
+        <!--scales the website for mobile devices-->
+        meta( name="viewport" content="width=device-width, initial-scale=0.75")
+        
+        <!-- Other scripts in the web pages that will be used -->
+        block scripts
+        
+    body
+
+        div(id="logo")
+            center
+                a(href="/")
+                    img(src="images/ffrguy.png" id="logo")
+      
+        <!-- Static navbar -->
+        nav(class="navbar navbar-default" id="blueNavbar")
+            div(class="container")
+                div(class="navbar-header")
+                    button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                        span(class="icon-bar")
+                    a(class="navbar-brand" href="/") Batch Search
+                div(id="navbar" class="navbar-collapse collapse")
+                    ul(class="nav navbar-nav")
+                        li
+                            a(href='/') Songs/Stepartists
+                        li
+                            a(href='/batches') Batches
+
+        block content
+    

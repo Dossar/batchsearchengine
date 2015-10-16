@@ -1,0 +1,34 @@
+extends ./layout.jade
+
+block scripts
+
+block content
+    title Batches
+    div(class="container")
+    
+        <!-- Legend for clarifying what certain colors mean -->
+        div(class="row")
+            div(class="col-xs-12")
+                h2 Legend
+                div(class="list-group")
+                    a(class="list-group-item list-group-item-danger") No Judgments
+                    a(class="list-group-item list-group-item-warning") Partial Judgments
+                    a(class="list-group-item list-group-item-success") Done
+    
+        <!-- Batches with links to a single batch page -->
+        div(class="row")
+            div(class="col-xs-12")
+                h2 Batches
+                div(class="list-group")
+                    a(href="/batch?batchName=September 2014 Set1" class="list-group-item list-group-item-success") September 2014 Set1
+                    a(href="/batch?batchName=September 2014 Set2" class="list-group-item list-group-item-success") September 2014 Set2
+                    a(href="/batch?batchName=September 2014 Set3" class="list-group-item list-group-item-success") September 2014 Set3
+                    a(href="/batch?batchName=High FGO Special Batch Phase1" class="list-group-item list-group-item-warning") High FGO Special Batch Phase1
+                    a(href="/batch?batchName=High FGO Special Batch Phase2" class="list-group-item list-group-item-danger") High FGO Special Batch Phase2
+                    a(href="/batch?batchName=November 2014" class="list-group-item list-group-item-danger") November 2014
+                    a(href="/batch?batchName=January 2015" class="list-group-item list-group-item-danger") January 2015
+                    a(href="/batch?batchName=March 2015" class="list-group-item list-group-item-danger") March 2015
+                    a(href="/batch?batchName=May 2015" class="list-group-item list-group-item-danger") May 2015
+                    a(href="/batch?batchName=July 2015" class="list-group-item list-group-item-danger") July 2015
+                    a(href="/batch?batchName=September 2015" class="list-group-item list-group-item-danger") September 2015
+                    

@@ -1,0 +1,16 @@
+{
+  "name": "batch-search-engine",
+  "version": "0.0.0",
+  "description": "Batch Search Engine for FFR.",
+  "main": "server.js",
+  "author": "DossarLX ODI <DossarLX@gmail.com>",
+  "dependencies": {
+    "express": "~3.2.4",
+    "jade": "*"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "devDependencies": {},
+  "license": "no"
+}

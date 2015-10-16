@@ -1,0 +1,55 @@
+extends ./layout.jade
+
+block scripts
+
+    <!-- These included scripts are for the Dynatable API which allows for JSON objects, unlike Datatables. -->
+    link(rel='stylesheet' href='/css/jquery.dynatable.css')
+    script(src="/js/jquery.dynatable.js")
+    
+    <!-- CSS for some things in dynatable. -->
+    link(rel="stylesheet" href="/css/pages.css")
+    
+    <!-- Resizable Table relative to Browser Window -->
+    link(rel="stylesheet" href="/css/resizable_Table.css")
+
+block content
+    title Batch Display
+    div(class="container")
+    
+        div(class="container-fluid")
+            div(class="row")
+                div(class="col-xs-12")
+                    if(results == -1)
+                        center
+                            h2 No Such Batch Exists.
+                    else
+                        center
+                            h2 #{batchName}
+                            h2 #{results.length} Songs Found.
+                        br
+                        table(id="resultsTable" class="table table-bordered resizeTable" cellspacing="0" width="100%")
+                            thead
+                                tr
+                                    th(style="width: 16.6%; font-weight: 700;") Song
+                                    th(style="width: 16.6%; font-weight: 700;") Artist
+                                    th(style="width: 16.6%; font-weight: 700;") Stepartist
+                                    th(style="width: 16.6%; font-weight: 700;") Status
+                                    th(style="width: 16.6%; font-weight: 700;") Update
+                                    th(style="width: 16.6%; font-weight: 700;") Batch
+
+                            tbody
+                            each val in results
+                                tr
+                                    td
+                                        a(href="/songInfo?idNum=" + val.idNum) #{val.title}
+                                    td #{val.artist}
+                                    td #{val.stepper}
+                                    td #{val.status}
+                                    td #{val.latest}
+                                    td #{val.batch}
+
+
+                        <!-- We initialize the dynatable when the table has been created from the JSON object. -->
+                        script.
+                            $('#resultsTable').dynatable();
+                            $('span.dynatable-search').remove();
