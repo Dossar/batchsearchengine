@@ -74,9 +74,7 @@ app.get('/songInfo', function(req, res) {
 
 // Displaying current batches
 app.get('/batches', function(req, res) {
-
   res.render('batches.jade');
-  
 });
 
 // Displaying songs for one batch
