@@ -123,8 +123,6 @@ app.get('/autoCompleteProcessStepArtist', function(req, res) {
   
 });
 
-
-
 // Error page which redirects the user back to Search.
 app.get('/*', function(req, res) {
   res.status(404).render('error.jade');
