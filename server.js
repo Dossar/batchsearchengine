@@ -2,7 +2,7 @@
  *
  * File:          server.js
  * Description:   File that runs the Batch Search
- *                Engine site.
+ *                Engine site
  *
  ****************************************************/
 
