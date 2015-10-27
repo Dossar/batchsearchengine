@@ -2,7 +2,7 @@
  *
  * File:          server.js
  * Description:   File that runs the Batch Search
- *                Engine site
+ *                Engine site.
  *
  ****************************************************/
 
@@ -93,6 +93,21 @@ app.get('/batch', function(req, res) {
   res.render('batch.jade',
              {results: results, batchName: req.query.batchName});
   
+});
+
+app.get('/status', function(req, res) {
+  
+  
+  var cQueue = searchEngine.getFilesByStatus('Conditional Queue', data);      // Songs in the conditional queue
+  var aQueue = searchEngine.getFilesByStatus('Accepted', data);      // Songs in the Accepted Queue
+  
+  if (req.query.batchName != undefined) {
+    if ( searchEngine.contains(constants.batchNames, req.query.batchName) )
+      results = data[req.query.batchName]; // Get the array of song objects in that batch if valid
+  }
+  
+  res.render('status.jade',
+             {cResults: cQueue, aResults: aQueue});
 });
 
 /**************************
