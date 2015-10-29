@@ -12,27 +12,9 @@ block scripts
     <!-- API that allows for JSON objects for creating paginated tables. -->
     script(src="/js/jquery.dynatable.js")
     
-    <!-- Character counter for song title and step artist search. -->
-    script(src='/js/character_count.js')
-    
-    <!-- Accordion collapse behavior script. Transitions between Song Title Search and Step Artist Search. -->
-    script(src="/js/accordion_focus.js")
-    
-    <!-- AutoComplete Table for Song Title Search -->
-    script(src="/js/autocomplete_songname.js")
-    
-    <!-- AutoComplete Table for Step Artist Search -->
-    script(src="/js/autocomplete_stepartist.js")
-    
-    <!-- Validation of input text fields for Song Title and Step Artist -->
-    script(src="/js/search_validate.js")
-    
-    <!-- Resizable Table relative to Browser Window -->
+     <!-- Resizable Table relative to Browser Window -->
     link(rel="stylesheet" href="/css/resizable_Table.css")
     
-    script.
-        $(document).ready( function () { initCharCounterSongTitle(); initCharCounterStepArtist(); initAccordionFocusSettings(); autocompleteSongTitle(); autocompleteStepArtist(); });
-
 block content
     title Accepted Files
     div(class="container")
@@ -74,18 +56,22 @@ block content
                 $('#AcceptedResultsTable').dynatable();
                 $('span.dynatable-search').remove();
         br
-        
+            
         br
         if(cResults == -1)
             center
                 div(class="alert alert-warning")
                     strong
-                         h2 Conditional Queue - None Found
+                        h2 Conditional Queue 
+                        img(src="images/scaryface.png" id="boo")
+                        h2 None Found
         else
             center
                 div(class="alert alert-warning")
                     strong
-                         h2 Conditional Queue - #{cResults.length} Song(s) Found.
+                        h2 Conditional Queue 
+                        img(src="images/scaryface.png" id="boo")
+                        h2 #{cResults.length} Song(s) Found.
 
             table(id="ConditionalResultsTable" class="table table-bordered resizeTable" cellspacing="0" width="100%")
                 thead
