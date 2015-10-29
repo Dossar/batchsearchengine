@@ -1,7 +1,7 @@
 /*------------------------------------------------------------------
 [nav.css]
 Authors:		Roy Van Liew
-Last Modified:	June 22 2015
+Last Modified:	October 20 2015
 Description:	Styling for the navigation bar in the header of the
 				website pages.
 -------------------------------------------------------------------*/
@@ -12,7 +12,7 @@ div#logo {
 	width:100px;
 	background-color:#FFF;
 	border-top:1px solid #FFF;
-    margin:0 auto;
+	margin:0 auto;
 }
 
 /* Prevent images from being wider than their container. */
