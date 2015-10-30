@@ -299,6 +299,42 @@ function autocompleteStepArtistSearch(stepperFields, packJson) {
 	return res; // Return the array of results that match all the conditions
 }
 
+/**
+ * File Status function that allows searching by song status.
+ * @parameter statusName name of the status requested, can be "Rejected", "Conditional Queue", "Accepted", and "Released"
+ * @parameter packJson The JSON of song packs as keys, with array of song objects for each key.
+ * @return result as an JSON array of songs that matched the input for status.
+ * @return -1 for no existing files with requested status
+ */
+function getFilesByStatus(statusName, packJson) {
+
+    //initialize the packs variable, and return array.
+    const packs = packJson;
+    const res = [];
+    
+    // For every key representing a song pack in the JSON, look through every chart object in
+    // its array. See if the 'status' property of that song object matches the given parameter.
+    // for reference, the status may be "Rejected", "Conditional Queue", "Accepted", and "Released"
+    for (var key in packs) {
+        
+        // Get the song array for the pack. Then for every song object, see if its status matches the requested status
+        var songArr = packs[key];
+        for (var songIndex = 0; songIndex < songArr.length; songIndex++) {
+			
+            var songObject = songArr[songIndex];
+
+            // Check for the status match, if they match, add to res JSON array, otherwise continue
+            // Status is compared in lowercase for ease in the future
+            if (statusName.toLocaleLowerCase() === songObject.status.toLocaleLowerCase())
+                res.push(songObject);
+        }
+    }
+
+    if (res.length === 0)
+	return -1; // return -1 if no results were found - an empty array.
+    return res; // Return the array of results that match all the conditions
+}
+
 //APIs
 exports.getSongById = getSongById;
 exports.songNameSearch = songNameSearch;
@@ -306,3 +342,4 @@ exports.stepArtistSearch = stepArtistSearch;
 exports.contains = contains;
 exports.autocompleteSongNameSearch = autocompleteSongNameSearch;
 exports.autocompleteStepArtistSearch = autocompleteStepArtistSearch;
+exports.getFilesByStatus = getFilesByStatus;

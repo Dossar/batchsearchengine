@@ -1,0 +1,101 @@
+extends ./layout.jade
+
+block scripts
+    <!-- CSS includes -->
+    <!-- Dynatable styling -->
+    link(rel='stylesheet' href='/css/jquery.dynatable.css')
+    
+    <!-- CSS for some things in dynatable. -->
+    link(rel="stylesheet" href="/css/pages.css")
+    
+    <!-- Javascript includes -->
+    <!-- API that allows for JSON objects for creating paginated tables. -->
+    script(src="/js/jquery.dynatable.js")
+    
+     <!-- Resizable Table relative to Browser Window -->
+    link(rel="stylesheet" href="/css/resizable_Table.css")
+    
+block content
+    title Accepted Files
+    div(class="container")
+    
+        if(aResults == -1)
+            center
+                div(class="alert alert-success")
+                    strong
+                        h2 Accepted Files - None Found
+        else
+            center
+                div(class="alert alert-success")
+                    strong
+                        h2 Accepted Files - #{aResults.length} Song(s) Found.
+            table(id="AcceptedResultsTable" class="table table-bordered resizeTable" cellspacing="0" width="100%")
+                thead
+                    tr
+                        th(style="width: 16.6%; font-weight: 700;") Song
+                        th(style="width: 16.6%; font-weight: 700;") Artist
+                        th(style="width: 16.6%; font-weight: 700;") Stepartist
+                        th(style="width: 16.6%; font-weight: 700;") Status
+                        th(style="width: 16.6%; font-weight: 700;") Update
+                        th(style="width: 16.6%; font-weight: 700;") Batch
+
+                tbody
+                each val in aResults
+                    tr
+                        td
+                            a(href="/songInfo?idNum=" + val.idNum) #{val.title}
+                        td #{val.artist}
+                        td #{val.stepper}
+                        td #{val.status}
+                        td #{val.latest}
+                        td #{val.batch}
+
+
+            <!-- We initialize the dynatable when the table has been created from the JSON object. -->
+            script.
+                $('#AcceptedResultsTable').dynatable();
+                $('span.dynatable-search').remove();
+        br
+            
+        br
+        if(cResults == -1)
+            center
+                div(class="alert alert-warning")
+                    strong
+                        h2 Conditional Queue 
+                        img(src="images/scaryface.png" id="boo")
+                        h2 None Found
+        else
+            center
+                div(class="alert alert-warning")
+                    strong
+                        h2 Conditional Queue 
+                        img(src="images/scaryface.png" id="boo")
+                        h2 #{cResults.length} Song(s) Found.
+
+            table(id="ConditionalResultsTable" class="table table-bordered resizeTable" cellspacing="0" width="100%")
+                thead
+                    tr
+                        th(style="width: 16.6%; font-weight: 700;") Song
+                        th(style="width: 16.6%; font-weight: 700;") Artist
+                        th(style="width: 16.6%; font-weight: 700;") Stepartist
+                        th(style="width: 16.6%; font-weight: 700;") Status
+                        th(style="width: 16.6%; font-weight: 700;") Update
+                        th(style="width: 16.6%; font-weight: 700;") Batch
+
+                tbody
+                each val in cResults
+                    tr
+                        td
+                            a(href="/songInfo?idNum=" + val.idNum) #{val.title}
+                        td #{val.artist}
+                        td #{val.stepper}
+                        td #{val.status}
+                        td #{val.latest}
+                        td #{val.batch}
+
+
+            <!-- We initialize the dynatable when the table has been created from the JSON object. -->
+            script.
+                $('#ConditionalResultsTable').dynatable();
+                $('span.dynatable-search').remove();

@@ -95,6 +95,15 @@ app.get('/batch', function(req, res) {
   
 });
 
+app.get('/status', function(req, res) {
+  
+  var cQueue = searchEngine.getFilesByStatus('Conditional Queue', data);      // Songs in the conditional queue
+  var aQueue = searchEngine.getFilesByStatus('Accepted', data);      // Songs in the Accepted Queue
+  
+  res.render('status.jade',
+             {cResults: cQueue, aResults: aQueue});
+});
+
 /**************************
  * AUTOCOMPLETE PROCESSING
  **************************/
