@@ -10,7 +10,8 @@ var batchNames = ['September 2014 Set1', 'September 2014 Set2',
                 'September 2014 Set3', 'November 2014', 'January 2015',
                 'March 2015', 'May 2015', 'July 2015', 'September 2015',
                 'High FGO Special Batch Phase1',
-                'High FGO Special Batch Phase2'];
+                'High FGO Special Batch Phase2',
+                'Official Tournament Batch'];
 
 // Alphabet array for the employee page A-Z listing.
 var alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
